@@ -1,0 +1,12 @@
+[Unit]
+Description=Raspberry Pi HTU31D Temperature Sensor Monitor for Home Assistant
+After=network-online.target local-fs.target 
+ 
+[Service]
+ExecStartPre=/bin/sleep 30
+ExecStart=/usr/bin/python3 /home/pi/projects/home-assistant-htu31d/home-assistant-htu31d.py
+User=pi
+Restart=always
+ 
+[Install]
+WantedBy=multi-user.target
