@@ -17,7 +17,7 @@ htu = adafruit_htu31d.HTU31D(i2c)
 
 def registerSensors():
     # temp
-    config = {"name": f"{room} temperature (HTU31D)", "device_class": "temperature", "unit_of_measurement": "°C", "state_topic": f"homeassistant/sensor/{room.lower()}/HTU31D_temperature", "unique_id": f"{room.lower()}_HTU31D_temperature"}
+    config = {"name": f"{room} temperature", "device_class": "temperature", "unit_of_measurement": "°C", "state_topic": f"homeassistant/sensor/{room.lower()}/HTU31D_temperature", "unique_id": f"{room.lower()}_HTU31D_temperature"}
     print(f"Registering sensor: {config}")
     client.publish(f"homeassistant/sensor/{room.lower()}/HTU31D_temperature/config", json.dumps(config))
     # humidity
