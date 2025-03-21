@@ -5,10 +5,10 @@ from time import sleep
 import board
 import adafruit_htu31d
 
-mqttBroker ="192.168.1.100" 
+mqttBroker ="10.0.5.100" 
 room = socket.gethostname()
 
-client = mqtt.Client(f"{room} Room Temperature")
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, f"{room} Room Temperature")
 client.connect(mqttBroker)
 client.loop_start()
 
@@ -29,10 +29,10 @@ registerSensors()
 loopCount = 0
 while True:
     loopCount += 1
-    if loopCount % 12 == 0:
+    if loopCount % 10 == 0:
         registerSensors()
     temperature, humidity = htu.measurements
     print(f"HTU31D: Temperature: {round(temperature, 1)}, Humidity: {round(humidity, 1)}")
     client.publish(f"homeassistant/sensor/{room.lower()}/HTU31D_temperature", round(temperature, 1))
     client.publish(f"homeassistant/sensor/{room.lower()}/HTU31D_humidity", round(humidity, 1))
-    sleep(5)
+    sleep(30)

@@ -26,10 +26,28 @@ Install dependencies:
 sudo apt-get install -y i2c-tools libgpiod-dev
 ```
 
+Setup virtual env:
+
+```bash
+python -m venv venv
+```
+
+Activate the venv:
+
+```bash
+source venv/bin/activate
+```
+
 Install python dependencies:
 
 ```bash
-pip3 install -r requirements.txt
+pip install -r requirements.txt
+```
+
+Exit the venv:
+
+```bash
+exit
 ```
 
 Copy service file:
@@ -57,4 +75,4 @@ Check status:
 sudo systemctl status home-assistant-htu31d.service
 ```
 
-As long as Home Assistant is already integrated wih your MQTT broker, new sensors as entities: `sensor.<HOSTNAME>_temperature_htu31d` and `sensor.<HOSTNAME>_humidity`
+As long as Home Assistant is already integrated wih your MQTT broker, new sensors as entities: `sensor.<HOSTNAME>_temperature_htu31d` and `sensor.<HOSTNAME>_humidity` will be added.
